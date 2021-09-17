@@ -13,7 +13,7 @@
         <thead>
           <tr>
             <th>No</th>
-
+            <th>Date</th>
             <th>D. Pipa</th>
             <th>Location</th>
             <th>Upstream</th>
@@ -30,13 +30,23 @@
             {
               echo "<tr>";
               echo "<td>".($key + 1)."</td>";
+              echo "<td>".$value->DATE." / ".$value->TIME."</td>";
               echo "<td>".$value->D_PIPE."</td>";
               echo "<td>".$value->LOCATION."</td>";
               echo "<td>".$value->UPSTREAM."</td>";
               echo "<td>".$value->DOWNSTREAM."</td>";
             
               echo "<td>";
-               
+              
+
+              echo "<a href='".site_url('c_t_video_capture/start/' . $value->ID)."' ";
+              ?>
+              onclick="return confirm('Apakah kamu ingin memulai video ini?')"
+              <?php
+              echo "> <i class='fa fa-mail-forward f-w-600 f-16 m-r-15 text-c-black'></i></a>";
+
+
+
               echo "<a href='javascript:void(0);' data-toggle='modal' data-target='#Modal_Edit' class='btn-edit' data-id='".$value->ID."'>";
                 echo "<i class='icon feather icon-edit f-w-600 f-16 m-r-15 text-c-green'></i>";
               echo "</a>";
@@ -57,6 +67,7 @@
             {
               echo "<tr>";
               echo "<td><s>".($key + 1)."</s></td>";
+              echo "<td><s>".$value->DATE." / ".$value->TIME."</s></td>";
               echo "<td><s>".$value->D_PIPE."</s></td>";
               echo "<td><s>".$value->LOCATION."</s></td>";
               echo "<td><s>".$value->UPSTREAM."</s></td>";

@@ -20,8 +20,7 @@
             <th>No</th>
             <th>Username</th>
             <th>Name</th>
-            <th>Level User</th>
-            <th>Company</th>
+           
             <th>Action</th>
           </tr>
         </thead>
@@ -35,8 +34,7 @@
               echo "<td>".($key + 1)."</td>";
               echo "<td>".$value->USERNAME."</td>";
               echo "<td>".$value->NAME."</td>";
-              echo "<td>".$value->LEVEL_USER."</td>";
-              echo "<td>".$value->COMPANY."</td>";
+              
             
               echo "<td>";
                
@@ -61,8 +59,7 @@
               echo "<td><s>".($key + 1)."</s></td>";
               echo "<td><s>".$value->USERNAME."</s></td>";
               echo "<td><s>".$value->NAME."</s></td>";
-              echo "<td><s>".$value->LEVEL_USER."</s></td>";
-              echo "<td><s>".$value->COMPANY."</s></td>";
+              
             
               echo "<td>";
                
@@ -128,31 +125,7 @@
 
             
 
-            <div class="form-group">
-              <label>Level User</label>
-              <select name="level_user_id" class='custom_width' id='select-state' placeholder='Pick a state...'>
-              <?php
-              foreach ($c_t_m_d_level_user as $key => $value) 
-              {
-                echo "<option value='".$value->ID."'>".$value->LEVEL_USER."</option>";
-
-              }
-              ?>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label>Company</label>
-              <select name="company_id" class='custom_width' id='select-state' placeholder='Pick a state...'>
-              <?php
-              foreach ($c_t_m_d_company as $key => $value) 
-              {
-                echo "<option value='".$value->ID."'>".$value->COMPANY."</option>";
-
-              }
-              ?>
-              </select>
-            </div>
+            
 
    
 
@@ -197,40 +170,7 @@
             
             
 
-            <div class="form-group">
-              <label>Company</label>
-              
-              <div class="searchable">
-                  <input type="text" name='company' placeholder="search" onkeyup="filterFunction(this,event)">
-                  <ul>
-                    <?php
-                    foreach ($c_t_m_d_company as $key => $value) 
-                    {
-                      echo "<li>".$value->COMPANY."</li>";
-                    }
-                    ?>
-                  </ul>
-              </div>
-
-            </div>
-
-            <div class="form-group">
-              <label>Level User</label>
-
-
-              <div class="searchable">
-                  <input type="text" name='level_user' placeholder="search" onkeyup="filterFunction(this,event)">
-                  <ul>
-                    <?php
-                    foreach ($c_t_m_d_level_user as $key => $value) 
-                    {
-                      echo "<li>".$value->LEVEL_USER."</li>";
-                    }
-                    ?>
-                  </ul>
-              </div>
-            </div>
-
+            
 
 
 
@@ -279,8 +219,7 @@
       const {
         ID,
         NAME : name,
-        COMPANY : company,
-        LEVEL_USER : level_user,
+       
         CREATED_BY : created_by,
         UPDATED_BY : updated_by
         
@@ -288,8 +227,6 @@
 
       elModalEdit.querySelector("[name=id]").value = ID;
       elModalEdit.querySelector("[name=name]").value = name;
-      elModalEdit.querySelector("[name=company]").value = company;
-      elModalEdit.querySelector("[name=level_user]").value = level_user;
       elModalEdit.querySelector("[name=created_by]").text = created_by;
       elModalEdit.querySelector("[name=updated_by]").text = updated_by;
       

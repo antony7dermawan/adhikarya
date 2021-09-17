@@ -13,6 +13,13 @@ class C_t_video_capture extends MY_Controller
 
   public function index()
   {
+    $data = array(
+      'ACTIVE' => FALSE
+    );
+    $this->m_t_video_capture->update_all($data);
+
+
+
     $this->session->set_userdata('t_video_capture_delete_logic', '1');
     $data = [
       "c_t_video_capture" => $this->m_t_video_capture->select(),
@@ -58,22 +65,41 @@ class C_t_video_capture extends MY_Controller
 
     //Dikiri nama kolom pada database, dikanan hasil yang kita tangkap nama formnya.
     $data = array(
+      'DATE' => date('Y-m-d'),
+      'TIME' => date('H:i:s'),
       'D_PIPE' => $d_pipe,
       'LOCATION' => $location,
       'UPSTREAM' => $upstream,
       'DOWNSTREAM' => $downstream,
       'CREATED_BY' => $this->session->userdata('username'),
       'UPDATED_BY' => '',
-      'MARK_FOR_DELETE' => FALSE
+      'MARK_FOR_DELETE' => FALSE,
+      'ACTIVE' => TRUE
     );
 
     $this->m_t_video_capture->tambah($data);
 
     $this->session->set_flashdata('notif', '<div class="alert alert-info icons-alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"> <i class="icofont icofont-close-line-circled"></i></button><p><strong>Data Berhasil Ditambahkan!</strong></p></div>');
-    redirect('c_t_video_streaming');
+    redirect('c_video_streaming');
   }
 
+  public function start($id)
+  {
 
+    $data = array(
+      'ACTIVE' => FALSE
+    );
+    $this->m_t_video_capture->update_all($data);
+
+
+
+    $data = array(
+        'ACTIVE' => TRUE
+    );
+    $this->m_t_video_capture->update($data, $id);
+    
+    redirect('c_video_streaming');
+  }
 
 
 

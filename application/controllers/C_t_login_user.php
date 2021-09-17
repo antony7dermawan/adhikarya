@@ -8,8 +8,6 @@ class C_t_login_user extends MY_Controller
   {
     parent::__construct();
     $this->load->model('m_t_login_user');
-    $this->load->model('m_t_m_d_level_user');
-    $this->load->model('m_t_m_d_company');
   }
 
 
@@ -18,8 +16,6 @@ class C_t_login_user extends MY_Controller
   {
     $data = [
       "c_t_login_user" => $this->m_t_login_user->select(),
-      "c_t_m_d_level_user" => $this->m_t_m_d_level_user->select(),
-      "c_t_m_d_company" => $this->m_t_m_d_company->select(),
       "title" => "User List",
       "description" => "Data user yang akan login"
     ];
@@ -55,8 +51,7 @@ class C_t_login_user extends MY_Controller
 
   function tambah()
   {
-    $level_user_id = intval($this->input->post("level_user_id"));
-    $company_id = intval($this->input->post("company_id"));
+   
     $username = ($this->input->post("username"));
     $name = ($this->input->post("name"));
     $password1 = ($this->input->post("password1"));
@@ -73,8 +68,7 @@ class C_t_login_user extends MY_Controller
         'USERNAME' => $username,
         'PASSWORD' => $password1,
         'NAME' => $username,
-        'COMPANY_ID' => $company_id,
-        'LEVEL_USER_ID' => $level_user_id,
+       
         'CREATED_BY' => $this->session->userdata('username'),
         'UPDATED_BY' => '',
         'MARK_FOR_DELETE' => FALSE
@@ -98,22 +92,6 @@ class C_t_login_user extends MY_Controller
     $id = $this->input->post("id");
 
 
-    $company = ($this->input->post("company"));
-    $read_select = $this->m_t_m_d_company->select_id($company);
-    foreach ($read_select as $key => $value) {
-      $company_id = $value->ID;
-    }
-
-
-
-
-
-    $level_user = ($this->input->post("level_user"));
-    $read_select = $this->m_t_m_d_level_user->select_id($level_user);
-    foreach ($read_select as $key => $value) {
-      $level_user_id = $value->LEVEL_USER_ID;
-    }
-
 
 
 
@@ -123,8 +101,7 @@ class C_t_login_user extends MY_Controller
     $name = ($this->input->post("name"));
     if ($level_user_id != '') {
       $data = array(
-        'LEVEL_USER_ID' => $level_user_id,
-        'COMPANY_ID' => $company_id,
+        
         'NAME' => $name,
         'UPDATED_BY' => $this->session->userdata('username')
       );

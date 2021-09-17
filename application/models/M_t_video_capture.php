@@ -10,6 +10,25 @@ public function update($data, $id)
     return $this->db->update('T_VIDEO_CAPTURE', $data);
 }
 
+
+public function update_all($data)
+{
+    return $this->db->update('T_VIDEO_CAPTURE', $data);
+}
+
+public function update_distance($data)
+{
+    $this->db->where('ACTIVE', TRUE);
+    return $this->db->update('T_VIDEO_CAPTURE', $data);
+}
+
+public function update_screenshot($data)
+{
+    $this->db->where('ACTIVE', TRUE);
+    return $this->db->update('T_VIDEO_CAPTURE', $data);
+}
+
+
 public function select_id($id)
 {
   $this->db->select('ID');
@@ -40,6 +59,7 @@ public function select_id($id)
     $this->db->from('T_VIDEO_CAPTURE');
 
     
+    $this->db->where("ACTIVE=true");
     $this->db->order_by("ID", "desc");
     $akun = $this->db->get ();
     return $akun->result ();
@@ -52,7 +72,7 @@ public function select_id($id)
     $this->db->from('T_VIDEO_CAPTURE');
 
    
-    $this->db->order_by("ID", "asc");
+    $this->db->order_by("ID", "desc");
     $akun = $this->db->get ();
     return $akun->result ();
   }

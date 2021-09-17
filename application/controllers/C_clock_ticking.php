@@ -21,6 +21,8 @@ class C_clock_ticking extends MY_Controller
       $upstream = $value->UPSTREAM;
       $downstream = $value->DOWNSTREAM;
       $d_pipe = $value->D_PIPE;
+
+      $screenshot = $value->SCREENSHOT;
     }
 
 
@@ -31,7 +33,7 @@ class C_clock_ticking extends MY_Controller
 
 
       
-      echo "<div class='d_pipe'><table> <tr><th>Pipe Diameter</th> <th> : ".$d_pipe."</th> </tr></table> </div>";
+      echo "<div class='d_pipe'><table> <tr><th>Pipe Diameter</th> <th> : ".$screenshot."</th> </tr></table> </div>";
 
 
       echo "<div class='date'>".date('Y-m-d')."</div> <br>";
@@ -45,7 +47,22 @@ class C_clock_ticking extends MY_Controller
       echo "<div class='downstream'><table> <tr><th>Downstream</th> <th> : ".$downstream."</th> </tr></table> </div>";
 
       
-      echo "<div class='distance'>".$distance." Cm</div>";
+      echo "<div class='distance'>".$distance." m</div>";
+
+    if($screenshot=='t')
+    {
+      $screen = imagegrabscreen();
+      if($screen)
+      {
+        $nameimg = 'photos/'.date('Y_m_d_H_i_s_').'photo.png';
+        imagepng($screen,$nameimg);
+
+        $data = array(
+          'SCREENSHOT' => FALSE
+        );
+        $this->m_t_video_capture->update_screenshot($data);
+      }
+    }
 
 
   }
