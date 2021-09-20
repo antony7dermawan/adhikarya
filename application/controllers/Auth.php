@@ -7,6 +7,7 @@ class Auth extends MY_Controller {
     parent::__construct();
 
     $this->load->model('UserModel');
+    $this->load->model('m_t_video_capture');
   }
 
   public function index(){
@@ -16,6 +17,16 @@ class Auth extends MY_Controller {
     // function render_login tersebut dari file core/MY_Controller.php
     $this->render_login('login'); // Load view login.php
   }
+
+  public function update_distance($distance)
+  {
+    $data = array(
+      'DISTANCE' => $distance
+    );
+    $this->m_t_video_capture->update_distance($data);
+  }
+
+
 
   public function login(){
     $username = $this->input->post('username'); // Ambil isi dari inputan username pada form login
