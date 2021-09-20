@@ -33,7 +33,7 @@ class C_clock_ticking extends MY_Controller
 
 
       
-      echo "<div class='d_pipe'><table> <tr><th>Pipe Diameter</th> <th> : ".$screenshot."</th> </tr></table> </div>";
+      echo "<div class='d_pipe'><table> <tr><th>Pipe Diameter</th> <th> : ".$d_pipe."</th> </tr></table> </div>";
 
 
       echo "<div class='date'>".date('Y-m-d')."</div> <br>";
