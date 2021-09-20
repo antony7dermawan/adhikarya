@@ -26,7 +26,7 @@
           <?php
           foreach ($c_t_video_capture as $key => $value) 
           {
-            if($value->MARK_FOR_DELETE == 'false')
+            if($value->MARK_FOR_DELETE == 'f')
             {
               echo "<tr>";
               echo "<td>".($key + 1)."</td>";
@@ -63,7 +63,7 @@
               echo "</tr>";
             }
 
-            if($value->MARK_FOR_DELETE == 'true')
+            if($value->MARK_FOR_DELETE == 't')
             {
               echo "<tr>";
               echo "<td><s>".($key + 1)."</s></td>";
